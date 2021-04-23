@@ -2,3 +2,10 @@
 * {
 	box-sizing: border-box;
 }
+
+
+.opskriftMain {
+	background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+	width: 100vw;
+	height: 100vh;
+}
