@@ -16,13 +16,15 @@
 	--grey: rgb(240, 240, 240);
   }
 
+/* --------------------------------
+UNIVERSAL
+-------------------------------- */
+
 body {
 	width: 100vw;
 	height: 100vh;
 	background-color: var(--grey)
 }
-
-
 
 .pageWrap {
 	margin: 0 auto;
@@ -30,13 +32,13 @@ body {
 	height: auto;
 }
 
+/* --------------------------------
+HEADER
+-------------------------------- */
+
 header {
 	height: 200px;
 	background-color:var(--white);
-}
-
-.logoHeader {
-
 }
 
 img {
@@ -62,4 +64,42 @@ li a {
 	color: black;
 	text-transform: uppercase;
 	text-decoration: none;
+}
+
+/* --------------------------------
+MAIN - INDEX
+-------------------------------- */
+
+main {
+	height: 800px;
+	background-color: var(--white);
+}
+
+/* --------------------------------
+FOOTER
+-------------------------------- */
+
+footer {
+	text-align: center;
+	height: 250px;
+	width: 100%;
+}
+
+.footerKontakt {
+	
+	height: 200px;
+	background-color: var(--white);
+}
+
+.footerKontaktIkoner {
+	display: flex;
+	justify-content: center;
+}
+
+.footerKontaktIkoner i {
+	margin: 0px 20px;
+}
+
+.footerCopyright {
+	height: 50px;
 }
