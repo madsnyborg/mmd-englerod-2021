@@ -84,11 +84,101 @@ MAIN - INDEX
 -------------------------------- */
 
 .mainIndex {
-	height: 800px;
 	background-color: var(--white);
 }
 
+.mainImgWrap {
+	display: flex;
+	justify-content: space-around;
+	margin: 3rem 0rem;
+}
 
+.mainImg {
+	display: flex;
+	align-items: flex-end;
+	text-align: center;
+	width: 25%;
+	height: 200px;
+	transition: all .2s ease-out;
+	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
+}
+
+.mainImg:hover {
+	box-shadow: 5px 5px 10px var(--darkGrey);
+	transform: scale(1.1);
+}
+
+.imgTxt {
+	height: 50px;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.521);
+	text-transform: uppercase;
+}
+
+
+.mainGrid {
+	margin: 3rem 0rem;
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.gridItem {
+	height: 250px;
+	display: flex;
+	align-items: flex-end;
+	text-align: center;
+	transition: all .2s ease-out;
+	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
+}
+
+.gridItem:hover {
+	box-shadow: 5px 5px 10px var(--darkGrey);
+	transform: scale(1.1);
+}
+
+/* --------------------------------
+MAIN - OPSKRIFTSINDEX
+-------------------------------- */
+
+.opskriftGrid {
+	margin: 3rem 0rem;
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+.opskriftGridItem {
+	height: 450px;
+	display: flex;
+	flex-direction: column;
+	transition: all .2s ease-out;
+}
+
+.opskriftGridItem:hover {
+	box-shadow: 5px 5px 10px var(--darkGrey);
+	transform: scale(1.1);
+}
+
+.opskriftGridItem p {
+	font-size: 8px;
+	line-height: 1rem;
+}
+
+.opskriftGridItem h2 {
+	padding: 0;
+	font-weight: normal;
+}
+
+.opskriftImg {
+	width: 100%;
+	height: 50%;
+	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
+}
 
 /* --------------------------------
 MAIN - OPSKRIFT
