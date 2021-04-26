@@ -36,7 +36,7 @@ HEADER
 -------------------------------- */
 
 header {
-	height: 300px;
+	height: 150px;
 	background-color:var(--white);
 }
 
@@ -130,24 +130,48 @@ MAIN - OPSKRIFT
 	height: auto;
 }
 
-.opskriftBog img {
-	display: block;
+.opskriftBog button {
+	background-color: var(--orange);
+	color: var(--white);
+	padding: 8px 16px;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 5px;
 }
 
-.opskriftBogTekst {
+.opskriftBogBox {
 	height: 100%;
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
+.opskriftBogBox img {
+	margin: 0;
+	width: 100%;
+	display: block;
+}
+
+
+
+
 
 .omForfatter {
+	
 	margin: 2rem 0rem;
 	border-top: 1px solid var(--red);
 	background-color: var(--red);
 	display: flex;
+}
 
+.omForfatterBox {
+	width: 50%;
+}
+
+.omForfatterBox img {
+	margin: 0;
+	width: 100%;
 }
 
 /* --------------------------------
