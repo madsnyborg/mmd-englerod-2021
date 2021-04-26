@@ -22,7 +22,6 @@ UNIVERSAL
 
 body {
 	width: 100vw;
-	height: 100vh;
 	background-color: var(--white)
 }
 
@@ -83,22 +82,72 @@ main {
 MAIN - OPSKRIFT
 -------------------------------- */
 .opskriftMain {
-	height: 700px;
+	height: 600px;
 }
 
 .opskriftMain img {
+	display: block;
 	width: 100%;
 	height: 400px;
 }
 
+.opskrift {
+	height: 1200px;
+	background-color: var(--red);
+}
+
+
+.opskriftTags {
+	display: flex;
+	justify-content: space-around;
+	border-top: 1px var(--orange) solid;
+	border-bottom: 1px var(--orange) solid;
+}
+
+
+
+.opskriftKommentar {
+	display: flex;
+}
+.opskriftKommentar img {
+	width: 50%;
+}
+
+
+
 .opskriftBøger {
+	margin-top: 2rem;
+	border-top: 1px solid var(--red);
+	justify-content: space-between;
 	display: flex;
 
 }
 
 .opskriftBog {
-	width: 40%;
+	display: flex;
+	background-color: var(--red);
+	width: 48%;
 	height: auto;
+}
+
+.opskriftBog img {
+	display: block;
+}
+
+.opskriftBogTekst {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.omForfatter {
+	margin: 2rem 0rem;
+	border-top: 1px solid var(--red);
+	background-color: var(--red);
+	display: flex;
+
 }
 
 /* --------------------------------
