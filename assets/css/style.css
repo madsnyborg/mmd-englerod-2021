@@ -77,6 +77,30 @@ main {
 	background-color: var(--white);
 }
 
+
+
+/* --------------------------------
+MAIN - OPSKRIFT
+-------------------------------- */
+.opskriftMain {
+	height: 700px;
+}
+
+.opskriftMain img {
+	width: 100%;
+	height: 400px;
+}
+
+.opskriftBøger {
+	display: flex;
+
+}
+
+.opskriftBog {
+	width: 40%;
+	height: auto;
+}
+
 /* --------------------------------
 FOOTER
 -------------------------------- */
