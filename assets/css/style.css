@@ -22,6 +22,7 @@ UNIVERSAL
 
 body {
 	width: 100vw;
+	line-height: 1.5rem;
 	background-color: var(--white)
 }
 
@@ -31,47 +32,58 @@ body {
 	height: auto;
 }
 
+hr {
+	border: 1px solid var(--orange)
+}
+
+h1 {
+	text-align: center;
+	font-weight: normal;
+	color: var(--darkGrey);
+}
+
 /* --------------------------------
 HEADER
 -------------------------------- */
 
 header {
-	height: 150px;
+	height: 110px;
 	background-color:var(--white);
 }
 
-img {
+header img {
 	display: block;	
 	margin: 30px auto 10px auto;
 	width: 150px;
 }
 
-nav {
-	border-top: var(--orange) 1px solid;
-	border-bottom: var(--orange) 1px solid;
-}
-
-ul {
+nav ul {
 	list-style-type: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-top: var(--orange) 1px solid;
+	border-bottom: var(--orange) 1px solid;
 }
 
-li a {
-	height: 40px;
-	font-size: 8px;
+nav li a {
+	height: 30px;
+	font-size: 10px;
 	margin: 0px 10px;
 	color: black;
 	text-transform: uppercase;
 	text-decoration: none;
 }
 
+nav li a:hover {
+	color: var(--orange);
+}
+
 /* --------------------------------
 MAIN - INDEX
 -------------------------------- */
 
-main {
+.mainIndex {
 	height: 800px;
 	background-color: var(--white);
 }
@@ -82,42 +94,74 @@ main {
 MAIN - OPSKRIFT
 -------------------------------- */
 .opskriftMain {
-	height: 600px;
+	height: 500px;
+	
 }
 
 .opskriftMain img {
+	margin-top: 2rem;
 	display: block;
 	width: 100%;
 	height: 400px;
 }
 
+
+
 .opskrift {
-	height: 1200px;
 	background-color: var(--red);
+	padding: 2rem;
+	margin-bottom: 2rem;
+}
+
+.opskrift h2, h3 {
+	font-weight: normal;
+	padding: 0;
 }
 
 
+
 .opskriftTags {
+	color: var(--darkGrey);
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	border-top: 1px var(--orange) solid;
 	border-bottom: 1px var(--orange) solid;
+}
+
+
+.opskriftFremgangsmåde {
+	display: flex;
+}
+
+.opskriftFremgangsmådeBox {
+	width: 50%;
+}
+
+.opskriftFremgangsmåde ul {
+	margin: 0;
+	padding: 0rem 1rem;
+	list-style-type: circle;
 }
 
 
 
 .opskriftKommentar {
 	display: flex;
+	margin-bottom: 2rem;
 }
 .opskriftKommentar img {
 	width: 50%;
 }
 
+.opskriftKommentar p {
+	padding: 0rem 1rem;
+}
+
 
 
 .opskriftBøger {
-	margin-top: 2rem;
-	border-top: 1px solid var(--red);
+	
+	margin: 2rem 0rem;
 	justify-content: space-between;
 	display: flex;
 
@@ -137,6 +181,11 @@ MAIN - OPSKRIFT
 	text-transform: uppercase;
 	border: none;
 	border-radius: 5px;
+}
+
+.opskriftBog button:hover {
+	background-color: var(--black);
+	cursor: pointer;
 }
 
 .opskriftBogBox {
@@ -160,7 +209,6 @@ MAIN - OPSKRIFT
 .omForfatter {
 	
 	margin: 2rem 0rem;
-	border-top: 1px solid var(--red);
 	background-color: var(--red);
 	display: flex;
 }
@@ -172,6 +220,15 @@ MAIN - OPSKRIFT
 .omForfatterBox img {
 	margin: 0;
 	width: 100%;
+}
+
+.omForfatter p, h2 {
+	margin: 0;
+	padding: 1rem;
+}
+
+.omForfatter a {
+	color: var(--orange);
 }
 
 /* --------------------------------
