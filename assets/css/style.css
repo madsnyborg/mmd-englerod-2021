@@ -5,11 +5,11 @@ Variable
 
 :root {
 	--black: rgba(25, 28, 39, 100);
-	--orange: #D94D1A;
-	--red: rgb(253, 241, 241);
-	--white: rgba(250, 250, 250, 100);
-	--grey: rgb(240, 240, 240);
-	--darkGrey: rgb(95, 95, 95);
+	--orange: #D2691E;
+	--brown: #B04C35;
+	--red: #FFFAFA;
+	--white: #FFFFFF;
+	--darkGrey: #707070;
   }
 
 /* --------------------------------
@@ -28,7 +28,7 @@ body {
 
 .pageWrap {
 	margin: 0 auto;
-	width: 80%;
+	width: 70%;
 	height: auto;
 }
 
@@ -53,7 +53,7 @@ header {
 
 header img {
 	display: block;	
-	margin: 30px auto 10px auto;
+	margin: 40px auto 20px auto;
 	width: 150px;
 }
 
@@ -265,7 +265,7 @@ MAIN - OPSKRIFT
 }
 
 .opskriftBog button {
-	background-color: var(--orange);
+	background-color: var(--brown);
 	color: var(--white);
 	padding: 8px 16px;
 	text-transform: uppercase;
