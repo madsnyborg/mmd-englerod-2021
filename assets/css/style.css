@@ -153,14 +153,14 @@ MAIN - INDEX
 
 }
 
-.gridItem {
+#gridItem {
 	height: 250px;
 	display: flex;
 	align-items: flex-end;
 	text-align: center;
 	transition: all .2s ease-out;
 	background-size: cover;
-	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
+	
 }
 
 .gridItem:hover {
@@ -168,10 +168,11 @@ MAIN - INDEX
 	transform: scale(1.1);
 }
 
-.gridItem1 {background-image: url(/assets/images/Index/morgenmad.jpg);}
-.gridItem2 {background-image: url(/assets/images/Index/mindre-retter.jpg);}
-.gridItem3 {background-image: url(/assets/images/Index/store-maaltider.jpg);}
-.gridItem4 {background-image: url(/assets/images/Index/soede-sager.jpg);}
+/*
+#gridItem1 {background-image: url(/assets/images/Index/morgenmad.jpg);}
+#gridItem2 {background-image: url(/assets/images/Index/mindre-retter.jpg);}
+#gridItem3 {background-image: url(/assets/images/Index/store-maaltider.jpg);}
+#gridItem4 {background-image: url(/assets/images/Index/soede-sager.jpg);}
 .gridItem5 {background-image: url(/assets/images/Index/Tilbehoer.jpg);}
 .gridItem6 {background-image: url(/assets/images/Index/salater.jpg);}
 .gridItem7 {background-image: url(/assets/images/Index/supper.jpg);}
@@ -180,7 +181,7 @@ MAIN - INDEX
 .gridItem10 {background-image: url(/assets/images/Index/glutenfri.jpg);}
 .gridItem11 {background-image: url(/assets/images/Index/bagvaerk.jpg);}
 .gridItem12 {background-image: url(/assets/images/Index/guides.jpg);}
-
+*/
 
 
 /* --------------------------------
