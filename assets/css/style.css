@@ -201,6 +201,7 @@ MAIN - OPSKRIFTSINDEX
 	height: 450px;
 	display: flex;
 	flex-direction: column;
+	object-fit: cover;
 }
 
 .opskriftGridItem:hover {
@@ -212,6 +213,11 @@ MAIN - OPSKRIFTSINDEX
 	line-height: 1rem;
 }
 
+.historie {
+	overflow: hidden;
+	max-height: 50px;
+}
+
 .opskriftGridItem h2 {
 	padding: 0;
 	font-weight: normal;
@@ -220,7 +226,6 @@ MAIN - OPSKRIFTSINDEX
 .opskriftImg {
 	width: 100%;
 	height: 50%;
-	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
 }
 
 /* --------------------------------
@@ -234,8 +239,6 @@ MAIN - OPSKRIFT
 	width: 100%;
 	height: 400px;
 }
-
-
 
 .opskrift {
 	background-color: var(--red);

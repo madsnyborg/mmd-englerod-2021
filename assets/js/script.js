@@ -4,14 +4,17 @@ const apiUserCredentials = {
   password: "API-key-1234#!",
 };
 
-const CategoryId = 10; // Opskriftindex
-const opskriftId = 7; // ikke en bestemt opskrift
+const opskriftindexId = 10; // Opskriftindex
+const opskriftId = 7; // alle opskrifterne
+const morgenmadId = 6, mindreRetterId = 12, storeMaaltiderId = 13, 
+soedeSagerId = 11, tilbehoerId = 14, salaterId = 15, supperId = 16, 
+drikkeId = 17, groenJulId = 18, glutenfriId = 19, bagvaerkId = 20;
+const morgenmadKatId = 137, mindreRetterKatId = 148, storeMaaltiderKatId = 153, 
+soedeSagerKatId = 158, tilbehoerKatId = 163, salaterKatId = 167, supperKatId = 171, 
+drikkeKatId = 175, groenJulKatId = 179, glutenfriKatId = 183, bagvaerkKatId = 188;
 
-const morgenmadId = 6;
-const mindreRetterId = 7;
 
-//Error message
-function errorMessage(msg) {
+function errorMessage(msg) { //Error message
   console.log(msg);
 }
 
@@ -71,7 +74,6 @@ function getCategoriesFromWP() { //gets categories from wordpress
           findPageId(url);
           drawSpecificCategory(pageId, CategoryPosts);
         }
-
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
       }
@@ -80,9 +82,8 @@ function getCategoriesFromWP() { //gets categories from wordpress
       errorMessage("An error has occured, please try again later.");
     }
   };
-
   // where to send the request and how?
-  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${CategoryId}&per_page=50`, true);
+  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${opskriftindexId}&per_page=50`, true);
 
   // specify any necassary request headers
   xhttp.setRequestHeader(
@@ -136,6 +137,7 @@ function drawSpecificCategory(pageId, CategoryPosts) {
       document.querySelector('main').innerHTML = text;
     }
   });
+  
 
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
@@ -143,7 +145,7 @@ function drawSpecificCategory(pageId, CategoryPosts) {
       try {
         opskrifter = JSON.parse(this.response); //converts data to json and puts it in CategoryPosts variable
         console.log(opskrifter);
-
+        drawRecipesOnCategoryPage(opskrifter, text);
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
       }
@@ -152,10 +154,8 @@ function drawSpecificCategory(pageId, CategoryPosts) {
       errorMessage("An error has occured, please try again later.");
     }
   };
-
   // where to send the request and how?
-  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${morgenmadId}&per_page=50`, true);
-
+  xhttp.open("GET", GETurl(pageId), true);
   // specify any necassary request headers
   xhttp.setRequestHeader(
     "Authorization",
@@ -164,34 +164,55 @@ function drawSpecificCategory(pageId, CategoryPosts) {
 
   // send request
   xhttp.send();
+  }
+
+  function GETurl(pageId) {
+    let id;
+    if (pageId == morgenmadKatId) {
+      id = morgenmadId;
+    } else if (pageId == mindreRetterKatId) {
+      id = mindreRetterId;
+    } else if (pageId == storeMaaltiderKatId) {
+      id = storeMaaltiderId;
+    } else if (pageId == soedeSagerKatId) {
+      id = soedeSagerId;
+    } else if (pageId == tilbehoerKatId) {
+      id = tilbehoerId;
+    } else if (pageId == salaterKatId) {
+      id = salaterId;
+    } else if (pageId == supperKatId) {
+      id = supperId;
+    } else if (pageId == drikkeKatId) {
+      id = drikkeId;
+    } else if (pageId == groenJulKatId) {
+      id = groenJulId;
+    } else if (pageId == glutenfriKatId) {
+      id = glutenfriId;
+    } else if (pageId == bagvaerkKatId) {
+      id = bagvaerkId;
+    }
+    
+    return `${apiUrl}posts?status=private&categories=${id}&per_page=50`
+  }
+
+function drawRecipesOnCategoryPage(opskrifter, text){
+  console.log(opskrifter);
+  text += `<div class="opskriftGrid">`;
+  document.querySelector('main').innerHTML += text;
+    opskrifter.forEach(opskrift => {
+      text += `
+        <div class="opskriftGridItem">
+          <div class="opskriftImg" style="background-image: url(${opskrift.acf.Billede1.url})">
+          </div>
+          <div>
+            <p>${opskrift.date}</p>
+            <hr>
+            <h2>${opskrift.acf.opskrift_navn}</h2>
+            <p class="historie">${opskrift.acf.billede_og_tekst_under_den_faktiske_opskrift.opskrift_historie}</p>
+          </div>
+        </div>
+      `;
+  });
+  text += `<div>`;
+  document.querySelector('main').innerHTML = text;
 }
-
-  //console.log(opskrifter);
-
-/*function hejsa() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = () => {
-    if (this.readyState === 4 && this.status === 200) { // this is ok
-      try {
-        opskrifter = JSON.parse(this.response); //converts data to json and puts it in opskrifter variable
-        console.log(opskrifter);
-      } catch (error) {
-        errorMessage(`Parsing error:${error}`);
-      }
-    }
-    if (this.readyState === 4 && this.status >= 400) { // error
-      errorMessage("An error has occured, please try again later.");
-    }
-  };
-  // where to send the request and how?
-  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${opskriftId}&per_page=50`, true);
-  // specify any necassary request headers
-  xhttp.setRequestHeader(
-    "Authorization",
-    `Bearer ${window.localStorage.getItem("authToken")}`
-  );
-  // send request
-  xhttp.send();
-  return opskrifter;
-} */
-
