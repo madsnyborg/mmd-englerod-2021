@@ -14,15 +14,15 @@ function errorMessage(msg) {
 
 getDataFromWP();
 
-function getDataFromWP() {
+function getDataFromWP() { //function that gets data from wordpress
   const xhttp = new XMLHttpRequest();
   // specify what happens when done
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       // Det er OK
       try {
-        let data = JSON.parse(this.response);
-        window.localStorage.setItem("authToken", data.token);
+        let data = JSON.parse(this.response); // converts data to json
+        window.localStorage.setItem("authToken", data.token); // gets token
         createPage();
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
@@ -54,45 +54,36 @@ function createPage() {
   getCategoriesFromWP();
 }
 
-function getCategoriesFromWP() {
-  // connect to the endpoint for all the vans (those are in private posts tagged as vans)
-  // if successful
-  // parse the result into a JS object
-  // populate the dropdown list with van info
-  //else - error
-
+function getCategoriesFromWP() { //gets categories from wordpress
   const xhttp = new XMLHttpRequest();
-
-  // what happens when done?
   xhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
+    if (this.readyState === 4 && this.status === 200) { // this is ok
       try {
-        CategoryPosts = JSON.parse(this.response);
-        console.log(CategoryPosts)
-        //drawCategories(CategoryPosts);
+        CategoryPosts = JSON.parse(this.response); //converts data to json and puts it in CategoryPosts variable
+        console.log(CategoryPosts);
         let categoryList = '';
-        for (let i = 0; i < CategoryPosts.length; i++){
+        for (let i = 0; i < CategoryPosts.length; i++){ // for loop that draws the categories with title and picture
             const item = CategoryPosts[i];
             categoryList += `
-                <div id="gridItem" class="gridItem${i}" style="background-image: url(${CategoryPosts[i].acf.billede_til_kategori.url})">
+                <a href="opskriftsindex.html?pageId=${CategoryPosts[i].id}" id="gridItem" class="gridItem${i}" style="background-image: url(${CategoryPosts[i].acf.billede_til_kategori.url})">
                     <div class="imgTxt">
                         <p>${CategoryPosts[i].acf.titel_pa_kategori}</p>
                     </div>
-                </div>
-                `;
+                </a>
+              `;
         }
-        document.querySelector('.mainGrid').innerHTML = categoryList;
+        document.querySelector('.mainGrid').innerHTML = categoryList; //sends categoryList-string to mainGrid in html
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
       }
     }
-    if (this.readyState === 4 && this.status >= 400) {
+    if (this.readyState === 4 && this.status >= 400) { // error
       errorMessage("An error has occured, please try again later.");
     }
   };
 
   // where to send the request and how?
-  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${CategoryId}`, true);
+  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${CategoryId}&per_page=50`, true);
 
   // specify any necassary request headers
   xhttp.setRequestHeader(
@@ -103,3 +94,9 @@ function getCategoriesFromWP() {
   // send request
   xhttp.send();
 }
+
+/*pageId = findPageId();
+
+function findPageId() {
+
+} */
