@@ -57,6 +57,10 @@ button:hover {
 	cursor: pointer;
 }
 
+.tagsBox {
+	display: flex;
+}
+
 .tag {
 	background-color: var(--orange);
 	color: var(--white);
@@ -67,6 +71,12 @@ button:hover {
 	text-align: center;
 	border: none;
 	border-radius: 5px;
+	margin: 0 25px;
+}
+
+a {
+	text-decoration: none;
+	color: var(--black);
 }
 	
 
@@ -160,7 +170,8 @@ MAIN - INDEX
 	text-align: center;
 	transition: all .2s ease-out;
 	background-size: cover;
-	
+	text-decoration: none;
+	color: black;
 }
 
 .gridItem:hover {
@@ -226,18 +237,19 @@ MAIN - OPSKRIFTSINDEX
 .opskriftImg {
 	width: 100%;
 	height: 50%;
+	background-size: cover;
 }
 
 /* --------------------------------
 MAIN - OPSKRIFT
 -------------------------------- */
-.opskriftMain {height: 500px;}
 
 .opskriftMain img {
 	margin-top: 2rem;
 	display: block;
 	width: 100%;
 	height: 400px;
+	object-fit: cover;
 }
 
 .opskrift {
@@ -246,11 +258,22 @@ MAIN - OPSKRIFT
 	margin-bottom: 2rem;
 }
 
-.opskrift h2, h3 {
+.opskriftMain h1 {
+	line-height: 3rem;
+}
+
+.opskrift h2 {
 	margin-top: 2rem;
-	line-height: 0rem;
+	line-height: 2rem;
 	font-weight: normal;
 	padding: 0;
+}
+
+.opskrift h3 {
+		margin-top: 2rem;
+		line-height: 1.5rem;
+		font-weight: normal;
+		padding: 0;
 }
 
 .opskrift > div > p {color: var(--darkGrey);}
@@ -305,7 +328,7 @@ MAIN - OPSKRIFT
 .opskriftBog {
 	display: flex;
 	background-color: var(--red);
-	width: 48%;
+	width: 100%;
 	height: auto;
 }
 
@@ -315,14 +338,17 @@ MAIN - OPSKRIFT
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
-}
-.opskriftBogBox img {
-	margin: 0;
-	width: 100%;
-	display: block;
+	align-items: flex-start;
 }
 
+.opskriftBogBox img {
+	margin: 0;
+	width: 70%;
+	display: block;
+	object-fit: cover;
+	display: flex;
+	align-items: center;
+}
 
 
 

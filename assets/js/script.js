@@ -70,9 +70,14 @@ function getCategoriesFromWP() { //gets categories from wordpress
         console.log(CategoryPosts);
         if (url.indexOf('pageId') == -1) {
           drawCategories(CategoryPosts);
-        } else {
+        } else if (url.indexOf('opskriftsindex.html') > -1) {
           findPageId(url);
           drawSpecificCategory(pageId, CategoryPosts);
+        } else if (url.indexOf('recipes.html') > -1) {
+          findPageId(url);
+          drawRecipe(pageId);
+        } else {
+          drawCategories(CategoryPosts);
         }
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
@@ -101,16 +106,7 @@ function findPageId(url) {
   if (urlSplit[1].indexOf('&') == -1){
       const parameterSplit = urlSplit[1].split('=');
       pageId = parameterSplit[1];
-  } /* else {
-      const urlParameters = urlSplit[1].split('&');
-      for (let i = 0; i < urlParameters.length; i++) {
-          if (urlParameters[i].substring(0,6) == 'pageId'){
-              const pageIdSplit = urlParameters[i].split('=');
-              pageId = pageIdSplit[1];
-              break;
-          }
-      }
-  }*/
+  } 
   return pageId;
 }
 
@@ -190,6 +186,8 @@ function drawSpecificCategory(pageId, CategoryPosts) {
       id = glutenfriId;
     } else if (pageId == bagvaerkKatId) {
       id = bagvaerkId;
+    } else {
+      id = opskriftId;
     }
     
     return `${apiUrl}posts?status=private&categories=${id}&per_page=50`
@@ -201,7 +199,7 @@ function drawRecipesOnCategoryPage(opskrifter, text){
   document.querySelector('main').innerHTML += text;
     opskrifter.forEach(opskrift => {
       text += `
-        <div class="opskriftGridItem">
+        <a href="recipes.html?pageId=${opskrift.id}" class="opskriftGridItem">
           <div class="opskriftImg" style="background-image: url(${opskrift.acf.Billede1.url})">
           </div>
           <div>
@@ -210,9 +208,184 @@ function drawRecipesOnCategoryPage(opskrifter, text){
             <h2>${opskrift.acf.opskrift_navn}</h2>
             <p class="historie">${opskrift.acf.billede_og_tekst_under_den_faktiske_opskrift.opskrift_historie}</p>
           </div>
-        </div>
+        </a>
       `;
   });
   text += `<div>`;
   document.querySelector('main').innerHTML = text;
+}
+
+function drawRecipe(pageId) {
+  let opskriftText = "";
+  console.log(pageId);
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) { // this is ok
+      try {
+        opskrifter = JSON.parse(this.response); //converts data to json and puts it in CategoryPosts variable
+        console.log(opskrifter);
+        opskrifter.forEach(opskrift => {
+          if (pageId == opskrift.id) {
+            console.log("god store hvede dag");
+            opskriftText += `
+            <section class="opskriftMain">
+                <h1>${opskrift.acf.opskrift_navn}</h1>
+                <img src="${opskrift.acf.Billede1.url}" alt="${opskrift.acf.opskrift_navn}">
+            </section>
+            <section class="opskrift">
+                <button>Udskriv <i class="fas fa-print"></i></button>
+                <div>
+                    <h2>${opskrift.acf.faktisk_opskrift.faktisk_opskrift_navn}</h2>
+                    <p>af Johanne Mosgaard</p>
+                    <div class="opskriftTxt">
+                        <p>${opskrift.acf.faktisk_opskrift.opskrift_introduktion}
+                        </p>
+                    </div>
+                </div>
+                <div class="opskriftBeskrivelse">
+                    <p>Ret: ${opskrift.acf.faktisk_opskrift.opskrift_info.ret}</p>
+                    <p>Antal: ${opskrift.acf.faktisk_opskrift.opskrift_info.antal_personer}</p>
+                    <p>Forb. tid: ${opskrift.acf.faktisk_opskrift.opskrift_info.forberedelses_tid} minutter</p>
+                    <p>Tilb. tid: ${opskrift.acf.faktisk_opskrift.opskrift_info.tilberedelses_tid} minutter</p>
+                </div>
+            `;
+            opskriftText += `
+            <div class="opskriftFremgangsmåde">
+                    <div class="opskriftFremgangsmådeBox">
+                        <h3>Ingredienser</h3>
+                        <ul>
+            `;
+            const ingrediensArray = opskrift.acf.faktisk_opskrift.ingredienser.ingredienser.split('&');
+            ingrediensArray.forEach(ingrediens => {
+              ingrediens.trim();
+              opskriftText += `
+                  <li>${ingrediens}</li>
+              `;
+            });
+            opskriftText += `
+                        </ul>
+                    </div>
+                    <div class="opskriftFremgangsmådeBox">
+                            <h3>Sådan gør du</h3>
+                            <ol>
+            `;
+            const saadanGoerDuArray = opskrift.acf.faktisk_opskrift.sadan_gor_du.split('&');
+            saadanGoerDuArray.forEach(trin => {
+              trin.trim();
+              opskriftText += `
+                  <li>${trin}</li>
+              `;
+            });
+            opskriftText += `</ol>`;
+            if (opskrift.acf.faktisk_opskrift.noter != ''){
+              console.log("jubiii hveder");
+              opskriftText += `
+                  <h3>Noter</h3>
+                  <p>${opskrift.acf.faktisk_opskrift.noter}</p>
+            `;
+            }
+            opskriftText += `
+            </div>
+                    </div>
+                </div>
+            </section>
+            <div class="opskriftKommentar">
+                <img src="${opskrift.acf.billede_og_tekst_under_den_faktiske_opskrift.billede2.url}" alt="${opskrift.acf.opskrift_navn}">
+                <p>
+                ${opskrift.acf.billede_og_tekst_under_den_faktiske_opskrift.opskrift_historie}
+                </p>
+            </div>
+            <section class="opskriftTags">
+            <h2>Tags i denne opskrift</h2>
+            <div class="tagsBox">
+            `;
+            const tagsArray = opskrift.acf.tags.split('&');
+            tagsArray.forEach(tag => {
+              tag.trim();
+              opskriftText += `
+                <div class="tag">${tag}</div>
+              `;
+            });
+            opskriftText += `
+            </div>
+          </section>
+          <hr>
+          <section class="opskriftBøger">
+            <a href="https://www.saxo.com/dk/vegansk-grundkoekken_johanne-mosgaard_indbundet_9788740058420" target="_blank" class="opskriftBog">
+                <div class="opskriftBogBox">
+                    <img src="/assets/images/veganskkøkkenbog.jpg" alt="Vegansk Grundkøkken">
+                </div>
+                
+                <div class="opskriftBogBox">
+                    <p>Vegansk grundkøkken
+                        <br>
+                        Johanne Mosgaard
+                        <br>
+                        Bog, indbundet
+                        <br>
+                        Sprog: Dansk
+                    </p>
+                    <button>Køb bogen</button>
+                </div>
+            </a>
+            <a href="https://www.saxo.com/dk/vegansk_johanne-mosgaard_indbundet_9788740036176" target="_blank" class="opskriftBog">
+                <div class="opskriftBogBox">
+                    <img src="/assets/images/veganskbog.jpg" alt="Vegansk Bog">
+                </div>
+                <div class="opskriftBogBox">
+                    <p>Vegansk 
+                        <br>
+                        Johanne Mosgaard
+                        <br>
+                        Bog, indbundet
+                        <br>
+                        Sprog: Dansk
+                    </p>
+                    <button>Køb bogen</button>
+                </div>
+            </a>
+        </section>
+
+        <hr>
+
+        <section class="omForfatter">
+        <div class="omForfatterBox">
+            <img src="/assets/images/portræt.jpg" alt="Johanne Mosgaard">
+        </div>  
+        <div class="omForfatterBox">
+            <h2>Hvem er jeg?</h2>
+            <p>Mit navn er Johanne, jeg er 28 år gammel og bor tæt på Rold Skov
+                i Nordjylland med min mandm vores datter og to hunde.
+                <br>
+                <br>
+                På min blog Englerod deler jeg min passion for velsmagende og farverig grøntsagsmad.
+                Jeg dyrker selv en stor del af mine grøntsager og elsker processen fra jord til bord.
+                <br>
+                <a href="#">Læs mere</a>
+            </p>
+            <img src="/assets/images/videoScreen.jpg" alt="Youtube Video">
+        </div>
+    </section>
+            `;
+          }
+        });
+        document.querySelector('main').innerHTML = opskriftText;
+      } catch (error) {
+        errorMessage(`Parsing error:${error}`);
+      }
+    }
+    if (this.readyState === 4 && this.status >= 400) { // error
+      errorMessage("An error has occured, please try again later.");
+    }
+  };
+  // where to send the request and how?
+  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${opskriftId}&per_page=50`, true);
+  // specify any necassary request headers
+  xhttp.setRequestHeader(
+    "Authorization",
+    `Bearer ${window.localStorage.getItem("authToken")}`
+  );
+
+  // send request
+  xhttp.send();
 }
