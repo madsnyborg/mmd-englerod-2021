@@ -138,7 +138,7 @@ MAIN - INDEX
 	width: 30%;
 	height: 250px;
 	transition: all .2s ease-out;
-	background-image: url(/assets/images/Bagt\ brushetta_low.jpg);
+	background-size: cover;
 }
 
 .mainImg:hover {
@@ -147,7 +147,7 @@ MAIN - INDEX
 }
 
 .imgTxt {
-	height: 50px;
+	height: auto;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.788);
 	text-transform: uppercase;

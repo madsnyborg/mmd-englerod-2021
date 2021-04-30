@@ -67,7 +67,6 @@ function getCategoriesFromWP() { //gets categories from wordpress
     if (this.readyState === 4 && this.status === 200) { // this is ok
       try {
         CategoryPosts = JSON.parse(this.response); //converts data to json and puts it in CategoryPosts variable
-        console.log(CategoryPosts);
         if (url.indexOf('pageId') == -1) {
           drawCategories(CategoryPosts);
         } else if (url.indexOf('opskriftsindex.html') > -1) {
@@ -112,6 +111,7 @@ function findPageId(url) {
 
 function drawCategories(CategoryPosts) {
   let categoryList = '';
+  drawInspiration();
         for (let i = 0; i < CategoryPosts.length; i++){ // for loop that draws the categories with title and picture
             categoryList += `
                 <a href="opskriftsindex.html?pageId=${CategoryPosts[i].id}" id="gridItem" class="gridItem${i}" style="background-image: url(${CategoryPosts[i].acf.billede_til_kategori.url})">
@@ -121,11 +121,10 @@ function drawCategories(CategoryPosts) {
                 </a>
               `;
         }
-        document.querySelector('.mainGrid').innerHTML = categoryList; //sends categoryList-string to mainGrid in html
+        document.querySelector('.mainGrid').innerHTML += categoryList; //sends categoryList-string to mainGrid in html
 }
 
 function drawSpecificCategory(pageId, CategoryPosts) {
-  console.log(pageId);
   let text = "";
   CategoryPosts.forEach(category => {
     if (category.id == pageId){
@@ -140,7 +139,6 @@ function drawSpecificCategory(pageId, CategoryPosts) {
     if (this.readyState === 4 && this.status === 200) { // this is ok
       try {
         opskrifter = JSON.parse(this.response); //converts data to json and puts it in CategoryPosts variable
-        console.log(opskrifter);
         drawRecipesOnCategoryPage(opskrifter, text);
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
@@ -370,6 +368,60 @@ function drawRecipe(pageId) {
           }
         });
         document.querySelector('main').innerHTML = opskriftText;
+      } catch (error) {
+        errorMessage(`Parsing error:${error}`);
+      }
+    }
+    if (this.readyState === 4 && this.status >= 400) { // error
+      errorMessage("An error has occured, please try again later.");
+    }
+  };
+  // where to send the request and how?
+  xhttp.open("GET", `${apiUrl}posts?status=private&categories=${opskriftId}&per_page=50`, true);
+  // specify any necassary request headers
+  xhttp.setRequestHeader(
+    "Authorization",
+    `Bearer ${window.localStorage.getItem("authToken")}`
+  );
+
+  // send request
+  xhttp.send();
+}
+
+function drawInspiration() {
+  let inspiration = [];
+  inspirationsOpskrifter = '';
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 200) { // this is ok
+      try {
+        opskrifter = JSON.parse(this.response); //converts data to json and puts it in variable
+        while(inspiration.length < 3){
+          let opskrift = opskrifter[Math.floor(Math.random() * opskrifter.length )];
+                inspiration.push(opskrift);
+         }
+        inspirationsOpskrifter += `
+        <h1>Få inspiration</h1>
+            <div class="mainImgWrap">
+                <a href="recipes.html?pageId=${inspiration[0].id}" class="mainImg" style="background-image: url(${inspiration[0].acf.Billede1.url})">
+                    <div class="imgTxt">
+                        <p>${inspiration[0].acf.opskrift_navn}</p>
+                    </div>
+                </a>
+                <a href="recipes.html?pageId=${inspiration[1].id}" class="mainImg" style="background-image: url(${inspiration[1].acf.Billede1.url})">
+                    <div class="imgTxt">
+                        <p>${inspiration[1].acf.opskrift_navn}</p>
+                    </div>
+                </a>
+                <a href="recipes.html?pageId=${inspiration[2].id}" class="mainImg" style="background-image: url(${inspiration[2].acf.Billede1.url})">
+                    <div class="imgTxt">
+                        <p>${inspiration[2].acf.opskrift_navn}</p>
+                    </div>
+                </a>
+            </div>
+            <hr>
+            `;
+        document.querySelector('.mainIndex').innerHTML = inspirationsOpskrifter;
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
       }
