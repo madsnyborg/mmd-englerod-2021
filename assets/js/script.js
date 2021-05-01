@@ -22,10 +22,8 @@ getDataFromWP();
 
 function getDataFromWP() { //function that gets data from wordpress
   const xhttp = new XMLHttpRequest();
-  // specify what happens when done
-  xhttp.onreadystatechange = function () {
-    if (this.readyState === 4 && this.status === 200) {
-      // Det er OK
+  xhttp.onreadystatechange = function () { // specify what happens when done
+    if (this.readyState === 4 && this.status === 200) { // Det er OK
       try {
         let data = JSON.parse(this.response); // converts data to json
         window.localStorage.setItem("authToken", data.token); // gets token
@@ -34,23 +32,20 @@ function getDataFromWP() { //function that gets data from wordpress
         errorMessage(`Parsing error:${error}`);
       }
     }
-    if (this.readyState == 4 && this.status >= 400) {
-      // Der er en fejl
+    if (this.readyState == 4 && this.status >= 400) { // Der er en fejl
       errorMessage("An error has occured, please try again later.");
     }
   };
-
-  // 'open' the connection to the API endpoint
-  xhttp.open(
+  
+  xhttp.open( // 'open' the connection to the API endpoint
     "POST",
     "http://charlottegracia.dk/wp-json/jwt-auth/v1/token",
     true
   );
-
-  // specify any request headers needed
-  xhttp.setRequestHeader("Content-Type", "application/JSON");
-  // send the request
-  xhttp.send(JSON.stringify(apiUserCredentials));
+  
+  xhttp.setRequestHeader("Content-Type", "application/JSON"); // specify any request headers needed
+  
+  xhttp.send(JSON.stringify(apiUserCredentials)); // send the request
 }
 
 function createPage() {
@@ -75,9 +70,7 @@ function getCategoriesFromWP() { //gets categories from wordpress
         } else if (url.indexOf('recipes.html') > -1) {
           findPageId(url);
           drawRecipe(pageId);
-        } else {
-          drawCategories(CategoryPosts);
-        }
+        } 
       } catch (error) {
         errorMessage(`Parsing error:${error}`);
       }
@@ -224,7 +217,6 @@ function drawRecipe(pageId) {
         console.log(opskrifter);
         opskrifter.forEach(opskrift => {
           if (pageId == opskrift.id) {
-            console.log("god store hvede dag");
             opskriftText += `
             <section class="opskriftMain">
                 <h1>${opskrift.acf.opskrift_navn}</h1>
@@ -276,7 +268,6 @@ function drawRecipe(pageId) {
             });
             opskriftText += `</ol>`;
             if (opskrift.acf.faktisk_opskrift.noter != ''){
-              console.log("jubiii hveder");
               opskriftText += `
                   <h3>Noter</h3>
                   <p>${opskrift.acf.faktisk_opskrift.noter}</p>
