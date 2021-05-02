@@ -57,7 +57,7 @@ button:hover {
 
 .tagsBox {
 	display: flex;
-	flex-direction: space-around;
+	justify-content: center;
 }
 
 .tag {
@@ -219,7 +219,7 @@ MAIN - OPSKRIFTSINDEX
 }
 
 /* --------------------------------
-MAIN - OPSKRIFT
+MAIN - RECIPES
 -------------------------------- */
 
 .opskriftMain img {
@@ -288,7 +288,7 @@ MAIN - OPSKRIFT
 	justify-content: space-around;
 	align-items: center;
 	background-color: var(--red);
-	height: 240px;
+	height: 200px;
 	margin: 2rem 0rem;
 }
 
@@ -373,7 +373,7 @@ footer h3 {font-weight: normal;}
 	flex-direction: column;
 	justify-content: space-around;
 	background-color: var(--red);
-	height: 130px;
+	height: 150px;
 }
 
 .footerKontaktIkoner {
@@ -398,7 +398,4 @@ footer h3 {font-weight: normal;}
 	border-right: var(--orange) 1px solid;
 }
 
-.footerCopyright {
-	height: 20px;
-	margin: 20px;
-}
+.footerCopyright {height: 30px;}
