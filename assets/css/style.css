@@ -32,9 +32,7 @@ body {
 	height: auto;
 }
 
-hr {
-	border: 1px solid var(--orange)
-}
+hr {border: 1px solid var(--orange)}
 
 h1 {
 	margin: 3rem 0rem;
@@ -46,7 +44,7 @@ h1 {
 button {
 	background-color: var(--brown);
 	color: var(--white);
-	padding: 8px 16px;
+	padding: 0.5rem 1.5rem;
 	text-transform: uppercase;
 	border: none;
 	border-radius: 5px;
@@ -59,20 +57,22 @@ button:hover {
 
 .tagsBox {
 	display: flex;
+	flex-direction: space-around;
 }
 
 .tag {
 	background-color: var(--orange);
 	color: var(--white);
-	height: 2rem;
-	width: 8rem;
-	padding: 5px 16px;
+	padding: 0.5rem 1.5rem;
 	text-transform: uppercase;
 	text-align: center;
 	border: none;
 	border-radius: 5px;
 	margin: 0 25px;
+	cursor: pointer;
 }
+
+.tag:hover {background-color: var(--black);}
 
 a {
 	text-decoration: none;
@@ -108,22 +108,18 @@ nav li a {
 	height: 30px;
 	font-size: 10px;
 	margin: 0px 10px;
-	color: black;
+	color: var(--black);
 	text-transform: uppercase;
 	text-decoration: none;
 }
 
-nav li a:hover {
-	color: var(--orange);
-}
+nav li a:hover {color: var(--orange);}
 
 /* --------------------------------
 MAIN - INDEX
 -------------------------------- */
 
-.mainIndex {
-	background-color: var(--white);
-}
+.mainIndex {background-color: var(--white);}
 
 .mainImgWrap {
 	display: flex;
@@ -149,10 +145,9 @@ MAIN - INDEX
 .imgTxt {
 	height: auto;
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.788);
+	background-color: rgba(255, 255, 255, 0.8);
 	text-transform: uppercase;
 }
-
 
 .mainGrid {
 	margin: 3rem 0rem;
@@ -174,25 +169,10 @@ MAIN - INDEX
 	color: black;
 }
 
-.gridItem:hover {
+#gridItem:hover {
 	box-shadow: 5px 5px 10px var(--darkGrey);
 	transform: scale(1.1);
 }
-
-/*
-#gridItem1 {background-image: url(/assets/images/Index/morgenmad.jpg);}
-#gridItem2 {background-image: url(/assets/images/Index/mindre-retter.jpg);}
-#gridItem3 {background-image: url(/assets/images/Index/store-maaltider.jpg);}
-#gridItem4 {background-image: url(/assets/images/Index/soede-sager.jpg);}
-.gridItem5 {background-image: url(/assets/images/Index/Tilbehoer.jpg);}
-.gridItem6 {background-image: url(/assets/images/Index/salater.jpg);}
-.gridItem7 {background-image: url(/assets/images/Index/supper.jpg);}
-.gridItem8 {background-image: url(/assets/images/Index/drikke.jpg);}
-.gridItem9 {background-image: url(/assets/images/Index/groen-jul.jpg);}
-.gridItem10 {background-image: url(/assets/images/Index/glutenfri.jpg);}
-.gridItem11 {background-image: url(/assets/images/Index/bagvaerk.jpg);}
-.gridItem12 {background-image: url(/assets/images/Index/guides.jpg);}
-*/
 
 
 /* --------------------------------
@@ -215,9 +195,7 @@ MAIN - OPSKRIFTSINDEX
 	object-fit: cover;
 }
 
-.opskriftGridItem:hover {
-	background-color: var(--red);
-}
+.opskriftGridItem:hover {background-color: var(--red);}
 
 .opskriftGridItem p {
 	font-size: 8px;
@@ -258,9 +236,7 @@ MAIN - OPSKRIFT
 	margin-bottom: 2rem;
 }
 
-.opskriftMain h1 {
-	line-height: 3rem;
-}
+.opskriftMain h1 {line-height: 3rem;}
 
 .opskrift h2 {
 	margin-top: 2rem;
@@ -354,15 +330,12 @@ MAIN - OPSKRIFT
 
 
 .omForfatter {
-	
 	margin: 2rem 0rem;
 	background-color: var(--red);
 	display: flex;
 }
 
-.omForfatterBox {
-	width: 50%;
-}
+.omForfatterBox {width: 50%;}
 
 .omForfatterBox img {
 	margin: 0;
@@ -374,8 +347,13 @@ MAIN - OPSKRIFT
 	padding: 1rem;
 }
 
-.omForfatter a {
-	color: var(--orange);
+.omForfatter a {color: var(--orange);}
+
+iframe {
+	margin: 1rem;
+	width: 95%; 
+	height: 35.4%; 
+	
 }
 
 /* --------------------------------
@@ -413,9 +391,7 @@ footer h3 {font-weight: normal;}
 	display: flex;
 }
 
-.footerInfo p {
-	margin: 0rem 1rem;
-}
+.footerInfo p {margin: 0rem 1rem;}
 
 .footerInfo div {
 	border-left: var(--orange) 1px solid;

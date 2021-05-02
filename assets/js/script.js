@@ -344,7 +344,7 @@ function drawRecipe(pageId) {
         <div class="omForfatterBox">
             <h2>Hvem er jeg?</h2>
             <p>Mit navn er Johanne, jeg er 28 år gammel og bor tæt på Rold Skov
-                i Nordjylland med min mandm vores datter og to hunde.
+                i Nordjylland med min mand med vores datter og to hunde.
                 <br>
                 <br>
                 På min blog Englerod deler jeg min passion for velsmagende og farverig grøntsagsmad.
@@ -352,7 +352,7 @@ function drawRecipe(pageId) {
                 <br>
                 <a href="#">Læs mere</a>
             </p>
-            <img src="/assets/images/videoScreen.jpg" alt="Youtube Video">
+            <iframe src="https://www.youtube.com/embed/lR-iZ0G3JWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </section>
             `;
