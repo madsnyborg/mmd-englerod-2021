@@ -302,7 +302,7 @@ function drawRecipe(pageId) {
           <section class="opskriftBøger">
             <a href="https://www.saxo.com/dk/vegansk-grundkoekken_johanne-mosgaard_indbundet_9788740058420" target="_blank" class="opskriftBog">
                 <div class="opskriftBogBox">
-                    <img src="/assets/images/veganskkøkkenbog.jpg" alt="Vegansk Grundkøkken">
+                    <img src="assets/images/veganskkøkkenbog.jpg" alt="Vegansk Grundkøkken">
                 </div>
                 
                 <div class="opskriftBogBox">
@@ -319,7 +319,7 @@ function drawRecipe(pageId) {
             </a>
             <a href="https://www.saxo.com/dk/vegansk_johanne-mosgaard_indbundet_9788740036176" target="_blank" class="opskriftBog">
                 <div class="opskriftBogBox">
-                    <img src="/assets/images/veganskbog.jpg" alt="Vegansk Bog">
+                    <img src="assets/images/veganskbog.jpg" alt="Vegansk Bog">
                 </div>
                 <div class="opskriftBogBox">
                     <p>Vegansk 
@@ -339,7 +339,7 @@ function drawRecipe(pageId) {
 
         <section class="omForfatter">
         <div class="omForfatterBox">
-            <img src="/assets/images/portræt.jpg" alt="Johanne Mosgaard">
+            <img src="assets/images/portræt.jpg" alt="Johanne Mosgaard">
         </div>  
         <div class="omForfatterBox">
             <h2>Hvem er jeg?</h2>
