@@ -21,7 +21,7 @@ UNIVERSAL
 }
 
 body {
-	width: 100vw;
+	width: 100%;
 	line-height: 1.5rem;
 	background-color: var(--white)
 }
