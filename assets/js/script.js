@@ -1,4 +1,4 @@
-const apiUrl = "http://charlottegracia.dk/wp-json/wp/v2/";
+const apiUrl = "https://charlottegracia.dk/wp-json/wp/v2/";
 const apiUserCredentials = {
   username: "api.user",
   password: "API-key-1234#!",
@@ -39,7 +39,7 @@ function getDataFromWP() { //function that gets data from wordpress
   
   xhttp.open( // 'open' the connection to the API endpoint
     "POST",
-    "http://charlottegracia.dk/wp-json/jwt-auth/v1/token",
+    "https://charlottegracia.dk/wp-json/jwt-auth/v1/token",
     true
   );
   
